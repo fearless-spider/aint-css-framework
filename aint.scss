@@ -1,0 +1,42 @@
+@use "sass:string";
+/*
+            <div class="r_trapezoid_bg">
+                <div class="r_trapezoid">
+                    <div class="r_trapezoid__face r_trapezoid__face--front">front</div>
+                    <div class="r_trapezoid__face r_trapezoid__face--right">right</div>
+                </div>
+            </div>
+ */
+@mixin r_trapezoid_bg($prefix, $scene_w, $scene_h, $front_w, $front_bg, $right_w, $right_bg) {
+  .#{$prefix}__r_trapezoid_bg {
+    width: $scene_w;
+    height: $scene_h;
+
+    .r_trapezoid {
+      width: 100%;
+      height: 100%;
+      position: relative;
+
+      .r_trapezoid__face {
+        position: absolute;
+        width: $scene_w;
+        height: $scene_h;
+
+        &.r_trapezoid__face--front {
+          width: $front_w;
+          height: $scene_h;
+          background-color: $front_bg;
+        }
+
+        &.r_trapezoid__face--right {
+          width: $right_w;
+          height: $scene_h;
+          border-left: $right_w solid $right_bg;
+          border-top: calc(#{$right_w / 2}) solid transparent;
+          border-bottom: calc(#{$right_w / 2}) solid transparent;
+          right: 0;
+        }
+      }
+    }
+  }
+}

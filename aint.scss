@@ -1,5 +1,6 @@
 @use "sass:string";
 /*
+Box with trapezoid on right side
             <div class="r_trapezoid_bg">
                 <div class="r_trapezoid">
                     <div class="r_trapezoid__face r_trapezoid__face--front">front</div>
@@ -35,6 +36,32 @@
           border-top: calc(#{$right_w / 2}) solid transparent;
           border-bottom: calc(#{$right_w / 2}) solid transparent;
           right: 0;
+        }
+      }
+    }
+  }
+}
+
+/*
+Sections
+<div class="__container">
+  <div class="row">
+    <div class="col-12"></div>
+  </div>
+</div>
+ */
+@mixin section($prefix, $columns:1, $gutter-x:0, $gutter-y:0) {
+  .#{prefix}__container {
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: calc(#{$gutter-y} * -1);
+      margin-right: calc(#{$gutter-x} / -2);
+      margin-left: calc(#{$gutter-x} / -2);
+      @for $i from 1 through $columns {
+        .column-#{$i} {
+          flex: 0 0 auto;
+          width: percentage($i / $columns);
         }
       }
     }
